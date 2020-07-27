@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
 });
+
+Route::get('/releases', 'ReleaseController@index');
+Route::post('/releases', 'ReleaseController@store');
+Route::get('/releases/{id}', 'ReleaseController@show');
+Route::put('/releases/{id}', 'ReleaseController@update');
+Route::delete('/releases/{id}', 'ReleaseController@delete');
+
+Route::get('/', 'HomeController@apiIndex');
