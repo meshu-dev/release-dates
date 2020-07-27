@@ -1958,6 +1958,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -37636,6 +37657,7 @@ var render = function() {
                       expression: "formData.email"
                     }
                   ],
+                  staticClass: "form-control",
                   attrs: { type: "email" },
                   domProps: { value: _vm.formData.email },
                   on: {
@@ -37672,7 +37694,11 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _vm._m(0)
+              _vm._m(0),
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _vm._m(2)
             ]
           )
         ])
@@ -37680,6 +37706,63 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group row" }, [
+      _c(
+        "label",
+        {
+          staticClass: "col-md-4 col-form-label text-md-right",
+          attrs: { for: "email" }
+        },
+        [
+          _vm._v(
+            "\n                            Email Address\n                        "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("input", {
+          staticClass: "form-control @error('email') is-invalid @enderror",
+          attrs: {
+            id: "email",
+            type: "email",
+            name: "email",
+            value: "",
+            required: "",
+            autocomplete: "email",
+            autofocus: ""
+          }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group row" }, [
+      _c(
+        "label",
+        {
+          staticClass: "col-md-4 col-form-label text-md-right",
+          attrs: { for: "password" }
+        },
+        [
+          _vm._v(
+            "\n                            Password\n                        "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _vm._v("/ >\n                        ")
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
