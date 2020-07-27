@@ -8,6 +8,9 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import BootstrapVue from 'bootstrap-vue';
+Vue.use(BootstrapVue);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -19,8 +22,8 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('main-component', require('./components/MainComponent.vue').default);
+Vue.component('login-component', require('./components/LoginComponent.vue').default);
+Vue.component('release-component', require('./components/ReleaseComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -30,4 +33,29 @@ Vue.component('main-component', require('./components/MainComponent.vue').defaul
 
 const app = new Vue({
     el: '#app',
+  	data() {
+    	return {
+    	  authenticated: false
+    	}
+  	},
+    methods: {
+      async logout() {
+        await axios.post('/logout');
+        authenticated = false;
+      },
+      loggedIn() {
+        authenticated = true;
+      }
+    }
 });
+
+axios
+  .get('/api/user')
+  .then(response => {
+    if (response.data.id) {
+      app.authenticated = true;
+    }
+  })
+  .catch(error => {
+    console.log('User not logged in');
+  });

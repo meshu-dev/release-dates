@@ -10,67 +10,36 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
 
         <!-- Scripts -->
+        <script src="{{ asset('js/vendor.js') }}" defer></script>
+        <script src="{{ asset('js/manifest.js') }}" defer></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body>
         <div id="app">
-            <div class="flex-center position-ref full-height">
-                <main-component></main-component>
-            </div>
+            <b-navbar toggleable="lg" type="dark" variant="danger">
+                <b-container>
+                    <b-navbar-brand href="#">Release Dates</b-navbar-brand>
+                    <b-navbar-nav class="ml-auto">
+                        <template v-if="authenticated">
+                            <b-nav-item href="#">Add Release</b-nav-item>
+                            <b-nav-item href="#" @click="logout">Logout</b-nav-item>
+                        </template>
+                    </b-navbar-nav>
+                </b-container>
+            </b-navbar>
+            <b-container id="app-content">
+                <div class="flex-center position-ref full-height">
+                    <template v-if="authenticated">
+                        <release-component></release-component>
+                    </template>
+                    <template v-else>
+                        <login-component @loggedin="loggedIn"></login-component>
+                    </template>
+                </div>
+            </b-container>
         </div>
     </body>
 </html>
