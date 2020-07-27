@@ -41,7 +41,7 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login 2') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
@@ -75,6 +75,8 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <example-component></example-component>
     </div>
 </body>
 </html>
