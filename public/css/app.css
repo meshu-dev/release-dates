@@ -14174,3 +14174,11 @@ body {
   font-size: 1.5em;
 }
 
+#app-releases {
+  padding-top: 20px;
+}
+
+#app-releases .row .col {
+  margin-bottom: 20px;
+}
+

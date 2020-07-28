@@ -17,6 +17,11 @@ class HomeController extends Controller
         return view('home');
     }
 
+    /**
+     * Show the API status.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function apiIndex()
     {
         return response()->json([

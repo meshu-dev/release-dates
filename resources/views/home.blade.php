@@ -13,13 +13,11 @@
     </b-container>
 </b-navbar>
 <b-container id="app-content">
-    <div class="flex-center position-ref full-height">
-        <template v-if="authenticated">
-            <release-component></release-component>
-        </template>
-        <template v-else>
-            <login-component @loggedin="loggedIn"></login-component>
-        </template>
-    </div>
+    <template v-if="authenticated">
+        <release-component></release-component>
+    </template>
+    <template v-else>
+        <login-component @loggedin="loggedIn"></login-component>
+    </template>
 </b-container>
 @endsection

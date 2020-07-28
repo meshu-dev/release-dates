@@ -25,9 +25,10 @@ class ReleaseController extends Controller
      */
     public function store(Request $request)
     {
-        $release = new Release;
-        $release->name = $request->name;
-
+        $release = Release::create([
+            'name' => $request->name,
+            'date' => $request->date
+        ]);
         $release->save();
     }
 

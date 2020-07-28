@@ -57,3 +57,13 @@ html, body {
 	border-radius: .25em;
 	font-size: 1.5em;
 }
+
+#app-releases {
+    padding-top: 20px;
+
+    .row {
+        .col {
+            margin-bottom: 20px;
+        }
+    }
+}

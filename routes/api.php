@@ -24,6 +24,6 @@ Route::get('/releases', 'ReleaseController@index');
 Route::post('/releases', 'ReleaseController@store');
 Route::get('/releases/{id}', 'ReleaseController@show');
 Route::put('/releases/{id}', 'ReleaseController@update');
-Route::delete('/releases/{id}', 'ReleaseController@delete');
+Route::delete('/releases/{id}', 'ReleaseController@destroy');
 
 Route::get('/', 'HomeController@apiIndex');
