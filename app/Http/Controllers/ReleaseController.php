@@ -18,6 +18,18 @@ class ReleaseController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getAllByDate()
+    {
+        return Release::take(100)
+            ->orderBy('date', 'asc')
+            ->get();
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

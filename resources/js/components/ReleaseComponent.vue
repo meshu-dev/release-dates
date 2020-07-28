@@ -49,7 +49,7 @@ export default {
   	},
     async getReleases() {
       try {
-        const response = await axios.get('/api/releases');
+        const response = await axios.get('/api/releases/ordered');
 
         if (response.data) {
         	this.addReleases(response.data);
@@ -60,7 +60,18 @@ export default {
     },
     async confirmDeletePopup(id) {
       const doDelete = await this.$bvModal.msgBoxConfirm(
-      	'Are you sure you want to delete?'
+      	'Are you sure you want to delete?',
+      	{
+          title: 'Please Confirm',
+          size: 'sm',
+          buttonSize: 'sm',
+          okVariant: 'danger',
+          okTitle: 'YES',
+          cancelTitle: 'NO',
+          footerClass: 'p-2',
+          hideHeaderClose: false,
+          centered: true
+        }
       );
 
       if (doDelete === true) {

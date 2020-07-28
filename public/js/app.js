@@ -2170,7 +2170,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context2.prev = 0;
                 _context2.next = 3;
-                return axios.get('/api/releases');
+                return axios.get('/api/releases/ordered');
 
               case 3:
                 response = _context2.sent;
@@ -2205,7 +2205,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return _this3.$bvModal.msgBoxConfirm('Are you sure you want to delete?');
+                return _this3.$bvModal.msgBoxConfirm('Are you sure you want to delete?', {
+                  title: 'Please Confirm',
+                  size: 'sm',
+                  buttonSize: 'sm',
+                  okVariant: 'danger',
+                  okTitle: 'YES',
+                  cancelTitle: 'NO',
+                  footerClass: 'p-2',
+                  hideHeaderClose: false,
+                  centered: true
+                });
 
               case 2:
                 doDelete = _context3.sent;
