@@ -14182,3 +14182,23 @@ body {
   margin-bottom: 20px;
 }
 
+#app-login {
+  flex-direction: column;
+}
+
+#app-login form {
+  align-items: stretch;
+  margin-top: 20px;
+  width: 300px;
+}
+
+#app-login form .form-group {
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+#app-login form #input-group-buttons .bv-no-focus-ring {
+  display: flex;
+  justify-content: flex-end;
+}
+

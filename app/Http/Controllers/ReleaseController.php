@@ -37,11 +37,16 @@ class ReleaseController extends Controller
      */
     public function store(Request $request)
     {
+        $date = new \DateTime($request->date);
+        $date = $date->format('Y-m-d');
+
         $release = Release::create([
             'name' => $request->name,
-            'date' => $request->date
+            'date' => $date
         ]);
         $release->save();
+
+        return $release;
     }
 
     /**
@@ -78,6 +83,6 @@ class ReleaseController extends Controller
      */
     public function destroy($id)
     {
-        Release::destroy(1);
+        Release::destroy($id);
     }
 }

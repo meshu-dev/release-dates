@@ -67,3 +67,25 @@ html, body {
         }
     }
 }
+
+#app-login {
+    flex-direction: column;
+
+    form {
+        align-items: stretch;
+        margin-top: 20px;
+        width: 300px;
+
+        .form-group {
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        #input-group-buttons {
+            .bv-no-focus-ring {
+                display: flex;
+                justify-content: flex-end;
+            }
+        }
+    }
+}

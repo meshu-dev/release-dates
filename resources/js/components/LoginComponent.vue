@@ -1,5 +1,5 @@
 <template>
-  <div id="app-login" class="flex-center position-ref full-height">
+  <div id="app-addform">
     <b-form
         action="#"
         @submit.prevent="handleLogin"
@@ -22,7 +22,7 @@
         id="input-group-password"
         label="Password:"
         label-for="password-input"
-    >
+      >
         <b-form-input
           id="password-input"
           type="password"
@@ -37,14 +37,12 @@
         <b-button type="submit" variant="primary">Submit</b-button>
       </b-form-group>
     </b-form>
-    <!-- <b-button @click="getUser">Get User</b-button> -->
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      secrets: [],
       formData: {
         email: '',
         password: ''

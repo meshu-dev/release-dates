@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import EventBus from './../event-bus';
+
 export default {
   data() {
     return {
@@ -32,21 +34,49 @@ export default {
 	async created() {
 	  await this.getReleases();
 	},
+  mounted () {
+    const addNewReleaseFtn = this.addNewRelease;
+
+    EventBus.$on('ADDED_RELEASE', function (payLoad) {
+      addNewReleaseFtn(payLoad);
+    });
+  },
   methods: {
-  	addReleases(releases) {
-  		const newReleases = [];
+    addNewRelease(newRelease) {
+      newRelease['date'] = new Date(newRelease['date']);
+      let newReleaseTimestamp = newRelease['date'].getTime();
 
-  		for (let release of releases) {
-  			//const dateText = new Date(release['date']);
+      console.log('R', this.releases);
 
-  			newReleases.push({
-  				id: release['id'],
-  				name: release['name'],
-  				date: new Date(release['date'])
-  			});
-  		}
-  		this.releases = newReleases;
-  	},
+      for (let index in this.releases) {
+        const currentRelease = this.releases[index];
+
+        if (currentRelease['date']) {
+          const releaseTimestamp = currentRelease['date'].getTime();
+          console.log('index', index, ' =============== ');
+          console.log('newReleaseTimestamp', newReleaseTimestamp);
+          console.log('releaseTimestamp - ', releaseTimestamp);
+
+          if (releaseTimestamp > newReleaseTimestamp) {
+            this.releases.splice(index, 0, newRelease);
+            break;
+          }
+        }
+      }
+      console.log('payload 2', newRelease, this.releases);
+    },
+    addReleases(releases) {
+      const newReleases = [];
+
+      for (let release of releases) {
+        newReleases.push({
+          id: release['id'],
+          name: release['name'],
+          date: new Date(release['date'])
+        });
+      }
+      this.releases = newReleases;
+    },
     async getReleases() {
       try {
         const response = await axios.get('/api/releases/ordered');
