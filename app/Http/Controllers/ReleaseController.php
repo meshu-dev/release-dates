@@ -69,9 +69,13 @@ class ReleaseController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $date = new \DateTime($request->date);
+        $date = $date->format('Y-m-d');
+        
         Release::where('id', $id)
           ->update([
-            'delayed' => 1
+            'name' => $request->name,
+            'date' => $date
           ]);
     }
 
