@@ -1,6 +1,8 @@
 # Release dates app
 
-An app used to add and view release dates for TV shows, video games and movies. This is a prototype created to tryout and use Laravel Sanctum (SPA Authentication) with a Vue frontend scaffolding. 
+An app used to add and view release dates for TV shows, video games and movies.
+
+This is a prototype created to tryout and use Laravel Sanctum (SPA Authentication) with a Vue frontend scaffolding. 
 
 ## Install software (using Mac and brew)
 ### Composer
