@@ -10,14 +10,21 @@ use DateTime;
 
 class ReleaseController extends Controller
 {
+    private Release $model;
+
+    public function __construct(Release $model)
+    {
+        $this->model = $model;
+    }
+
     public function index(): Collection
     {
-        return Release::take(10)->get();
+        return $this->model->take(10)->get();
     }
 
     public function getAllByDate(): Collection
     {
-        return Release::take(100)
+        return $this->model->take(100)
             ->orderBy('date', 'asc')
             ->get();
     }
@@ -26,7 +33,7 @@ class ReleaseController extends Controller
     {
         $request->validate($this->getValidationRules());
 
-        $release = Release::create([
+        $release = $this->model->create([
             'name' => $request->name,
             'date' => $request->date
         ]);
@@ -38,14 +45,14 @@ class ReleaseController extends Controller
 
     public function show(int $id): Model
     {
-        return Release::findOrFail($id);
+        return $this->model->findOrFail($id);
     }
 
     public function update(Request $request, int $id): void
     {
         $request->validate($this->getValidationRules());
         
-        Release::where('id', $id)
+        $this->model->where('id', $id)
           ->update([
             'name' => $request->name,
             'date' => $request->date
@@ -54,7 +61,7 @@ class ReleaseController extends Controller
 
     public function destroy(int $id): void
     {
-        Release::destroy($id);
+        $this->model->destroy($id);
     }
 
     public function getValidationRules(): array
