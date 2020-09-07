@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\Release;
 
 class HomeController extends Controller
@@ -22,7 +23,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function apiIndex()
+    public function apiIndex(): Response
     {
         return response()->json([
             'status' => 'Ok'

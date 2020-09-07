@@ -3,90 +3,65 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use App\Models\Release;
+use DateTime;
 
 class ReleaseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(): Collection
     {
         return Release::take(10)->get();
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getAllByDate()
+    public function getAllByDate(): Collection
     {
         return Release::take(100)
             ->orderBy('date', 'asc')
             ->get();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(Request $request): Model
     {
-        $date = new \DateTime($request->date);
-        $date = $date->format('Y-m-d');
+        $request->validate($this->getValidationRules());
 
         $release = Release::create([
             'name' => $request->name,
-            'date' => $date
+            'date' => $request->date
         ]);
         $release->save();
 
         return $release;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    public function show(int $id): Model
     {
         return Release::findOrFail($id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id): void
     {
-        $date = new \DateTime($request->date);
-        $date = $date->format('Y-m-d');
+        $request->validate($this->getValidationRules());
         
         Release::where('id', $id)
           ->update([
             'name' => $request->name,
-            'date' => $date
+            'date' => $request->date
           ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(int $id): void
     {
         Release::destroy($id);
+    }
+
+    public function getValidationRules(): array
+    {
+        return [
+            'name' => 'required|min:3|max:255',
+            'date' => 'required|date_format:"Y-m-d"'
+        ];
     }
 }

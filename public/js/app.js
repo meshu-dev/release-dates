@@ -2113,11 +2113,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2137,38 +2132,43 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response;
+        var dateObj, date, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.prev = 0;
-                _context.next = 3;
-                return axios.post('/api/releases', _this.formData);
+                dateObj = _this.formData.date;
+                date = dateObj.toJSON().split('T')[0];
+                _context.next = 5;
+                return axios.post('/api/releases', {
+                  name: _this.formData.name,
+                  date: date
+                });
 
-              case 3:
+              case 5:
                 response = _context.sent;
 
                 if (response.data) {
                   _this.formData.name = '';
                   _this.formData.date = '';
-                  _event_bus__WEBPACK_IMPORTED_MODULE_2__["default"].$emit('ADDED_RELEASE', response.data); //this.$emit('added', response.data);
+                  _event_bus__WEBPACK_IMPORTED_MODULE_2__["default"].$emit('ADDED_RELEASE', response.data);
                 }
 
-                _context.next = 10;
+                _context.next = 12;
                 break;
 
-              case 7:
-                _context.prev = 7;
+              case 9:
+                _context.prev = 9;
                 _context.t0 = _context["catch"](0);
                 console.log('Error', _context.t0);
 
-              case 10:
+              case 12:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 7]]);
+        }, _callee, null, [[0, 9]]);
       }))();
     },
     hideForm: function hideForm() {
@@ -81650,11 +81650,12 @@ var render = function() {
               attrs: {
                 id: "input-group-date",
                 label: "Date:",
-                "label-for": "pdate-input"
+                "label-for": "date-input"
               }
             },
             [
               _c("datepicker", {
+                attrs: { id: "date-input" },
                 model: {
                   value: _vm.formData.date,
                   callback: function($$v) {

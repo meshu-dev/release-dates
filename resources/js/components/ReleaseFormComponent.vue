@@ -20,15 +20,10 @@
       <b-form-group
         id="input-group-date"
         label="Date:"
-        label-for="pdate-input">
-      <!--
-        <b-form-input
+        label-for="date-input">
+        <datepicker
           id="date-input"
-          required
-          placeholder="Date"
-          v-model="formData.date"
-        ></b-form-input> -->
-        <datepicker v-model="formData.date"></datepicker>
+          v-model="formData.date"></datepicker>
       </b-form-group>
       <b-form-group id="input-group-buttons">
         <b-button type="submit" variant="danger">Submit</b-button>
@@ -56,9 +51,15 @@ export default {
   methods: {
     async submitForm() {
       try {
+        const dateObj = this.formData.date;
+        const date = dateObj.toJSON().split('T')[0];
+
         const response = await axios.post(
           '/api/releases',
-          this.formData
+          {
+            name: this.formData.name,
+            date: date
+          }
         );
 
         if (response.data) {
@@ -66,8 +67,6 @@ export default {
           this.formData.date = '';
 
           EventBus.$emit('ADDED_RELEASE', response.data);
-
-          //this.$emit('added', response.data);
         }
       } catch (error) {
         console.log('Error', error);
