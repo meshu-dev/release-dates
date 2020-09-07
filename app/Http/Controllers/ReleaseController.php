@@ -19,7 +19,9 @@ class ReleaseController extends Controller
 
     public function index(): Collection
     {
-        return $this->model->take(10)->get();
+        return $this->model
+                    ->take($this->getRowLimit())
+                    ->get();
     }
 
     public function getAllByDate(): Collection
