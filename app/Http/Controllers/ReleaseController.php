@@ -10,7 +10,7 @@ use DateTime;
 
 class ReleaseController extends Controller
 {
-    private Release $model;
+    private $model;
 
     public function __construct(Release $model)
     {
